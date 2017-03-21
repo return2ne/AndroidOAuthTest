@@ -5,7 +5,7 @@ import com.google.api.client.auth.oauth2.Credential.AccessMethod;
 
 public enum OAuthParams {
 
-    NAVER_BLOG_OAUTH2(
+    NAVER_LOGIN_OAUTH2(
             "",
             "",
             "https://nid.naver.com/oauth2.0/token",
@@ -59,18 +59,16 @@ public enum OAuthParams {
     }
 
     public String getClientId() {
-        if (clientId == null || clientId.length() == 0) {
-            throw new IllegalArgumentException("clientId is null");
-        }
+//        if (clientId == null || clientId.length() == 0) {
+//            throw new IllegalArgumentException("clientId is null");
+//        }
         return clientId;
     }
 
     public String getClientSecret() {
-        /**
-        if (clientSecret == null || clientSecret.length() == 0) {
-            throw new IllegalArgumentException("clientSecret is null");
-        }
-         **/
+//        if (clientSecret == null || clientSecret.length() == 0) {
+//            throw new IllegalArgumentException("clientSecret is null");
+//        }
         return clientSecret;
     }
 

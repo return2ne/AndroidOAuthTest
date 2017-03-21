@@ -16,6 +16,8 @@ public class MainActivity extends Activity {
 
     private Button btnStartGoogleOAuth;
     private Button btnClearGoogleOAuth;
+    private Button btnStartNaverOAuth;
+    private Button btnClearNaverOAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,7 @@ public class MainActivity extends Activity {
         btnStartGoogleOAuth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startOAuthFlow(OAuthParams.NAVER_BLOG_OAUTH2);
+                startOAuthFlow(OAuthParams.GOOGLE_TASKS_OAUTH2);
             }
         });
 
@@ -36,7 +38,23 @@ public class MainActivity extends Activity {
         btnClearGoogleOAuth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clearCredentials(OAuthParams.NAVER_BLOG_OAUTH2);
+                clearCredentials(OAuthParams.GOOGLE_TASKS_OAUTH2);
+            }
+        });
+
+        btnStartNaverOAuth = (Button) findViewById(R.id.btnStartNaverOAuth);
+        btnStartNaverOAuth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startOAuthFlow(OAuthParams.NAVER_LOGIN_OAUTH2);
+            }
+        });
+
+        btnClearNaverOAuth = (Button) findViewById(R.id.btnClearNaverOAuth);
+        btnClearNaverOAuth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearCredentials(OAuthParams.NAVER_LOGIN_OAUTH2);
             }
         });
     }
