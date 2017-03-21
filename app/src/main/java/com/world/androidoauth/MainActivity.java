@@ -1,32 +1,57 @@
 package com.world.androidoauth;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
-import android.widget.TextView;
+
+import java.io.IOException;
 
 public class MainActivity extends Activity {
 
-    private WebView webView;
-    private TextView txtGoogleOAuth;
-    private Button btnGoogleOAuth;
+    private SharedPreferences prefs;
+
+    private Button btnStartGoogleOAuth;
+    private Button btnClearGoogleOAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txtGoogleOAuth = (TextView) findViewById(R.id.txtGoogleOAuth);
-        webView = (WebView) findViewById(R.id.webView);
-        webView.getSettings().setJavaScriptEnabled(true);
-        btnGoogleOAuth = (Button) findViewById(R.id.btnGoogleOAuth);
-        btnGoogleOAuth.setOnClickListener(new View.OnClickListener() {
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        btnStartGoogleOAuth = (Button) findViewById(R.id.btnStartGoogleOAuth);
+        btnStartGoogleOAuth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startOAuthFlow(OAuthParams.NAVER_BLOG_OAUTH2);
+            }
+        });
 
+        btnClearGoogleOAuth = (Button) findViewById(R.id.btnClearGoogleOAuth);
+        btnClearGoogleOAuth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearCredentials(OAuthParams.NAVER_BLOG_OAUTH2);
             }
         });
     }
+
+    private void startOAuthFlow(OAuthParams oAuthParams) {
+        Constants.OAUTHPARAMS = oAuthParams;
+        startActivity(new Intent().setClass(this, OAuthAccessTokenActivity.class));
+    }
+
+    private void clearCredentials(OAuthParams oAuthParams) {
+        try {
+            new OAuthHelper(prefs, oAuthParams).clearCredentials();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

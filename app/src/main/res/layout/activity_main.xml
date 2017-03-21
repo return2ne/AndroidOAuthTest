@@ -3,25 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnGoogleOAuth"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="Start Google OAuth" />
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/txtGoogleOAuth"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/btnGoogleOAuth"
-        android:layout_marginTop="10dp" />
+        <Button
+            android:id="@+id/btnStartGoogleOAuth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Google OAuth" />
 
-    <WebView
-        android:id="@+id/webView"
-        android:layout_width="138dp"
-        android:layout_height="501dp"
-        android:visibility="invisible" />
+        <Button
+            android:id="@+id/btnClearGoogleOAuth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear Google OAuth" />
+
+    </LinearLayout>
 
 </RelativeLayout>
